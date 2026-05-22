@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Noymi Sanchez | Дешево. Эффективно. Быстро</title>
+    <meta name="description" content="Noymi Sanchez — разработчик, дизайнер, копирайтер, подкастер. Создаю приложения, дизайн и сайты. Дорого. Красиво. Эффективно.">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0A0A0F;
+            background-image: radial-gradient(circle at 15% 30%, rgba(100, 40, 140, 0.08) 0%, #0A0A0F 90%);
+            color: #E5DFF0;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* красивые скроллбары фиолетовые */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1A1A24;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #8866CC;
+            border-radius: 12px;
+        }
+
+        /* базовые анимации появления / исчезновения */
+        .reveal-item {
+            transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            will-change: opacity, transform;
+        }
+        .reveal-hidden {
+            opacity: 0;
+            transform: translateY(36px);
+        }
+        .reveal-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* навигация */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 28px 0 20px;
+            flex-wrap: wrap;
+            gap: 20px;
+            border-bottom: 1px solid rgba(136, 102, 204, 0.25);
+            backdrop-filter: blur(2px);
+        }
+        .logo h1 {
+            font-size: 1.7rem;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #C9B3FF, #9A6EE6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .logo p {
+            font-size: 0.8rem;
+            color: #A28FCC;
+            font-weight: 500;
+            margin-top: 4px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #D9CCFF;
+            transition: 0.2s;
+        }
+        .nav-links a:hover {
+            color: #B77CFF;
+            text-shadow: 0 0 4px rgba(160, 100, 255, 0.4);
+        }
+
+        /* hero блок */
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            padding: 80px 0 60px;
+        }
+        .hero-left {
+            flex: 1.2;
+        }
+        .hero-left .sub {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #B287F0;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .hero-left h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+            background: linear-gradient(125deg, #FFFFFF, #CAA8FF);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .hero-highlight {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #CAB8F0;
+            margin-bottom: 30px;
+            border-left: 4px solid #9A6EE6;
+            padding-left: 20px;
+        }
+        .badge-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin: 28px 0 24px;
+        }
+        .badge {
+            background: #1E1A2F;
+            padding: 8px 20px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #D9C6FF;
+            border: 1px solid #3F2E66;
+        }
+        .hero-right {
+            flex: 0.9;
+            background: linear-gradient(145deg, #14101F, #1C1730);
+            border-radius: 48px;
+            padding: 44px 28px;
+            text-align: center;
+            box-shadow: 0 25px 35px -12px rgba(0,0,0,0.5);
+            border: 1px solid rgba(136, 102, 204, 0.4);
+        }
+        .hero-right i {
+            font-size: 3.8rem;
+            color: #B47CFF;
+            margin-bottom: 16px;
+        }
+        .hero-right h3 {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #F0E6FF;
+        }
+        .price-quote {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-top: 12px;
+            background: linear-gradient(120deg, #C9A0FF, #9A6EE6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        /* секция услуг */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 70px 0 20px 0;
+            letter-spacing: -0.02em;
+            color: #EFE4FF;
+        }
+        .grid-services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 32px;
+            margin: 40px 0 40px;
+        }
+        .service-card {
+            background: #11101C;
+            border-radius: 38px;
+            padding: 32px 24px;
+            transition: all 0.3s ease;
+            border: 1px solid #2C2446;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: #9466E6;
+            box-shadow: 0 24px 40px -12px rgba(120, 70, 200, 0.3);
+            background: #141024;
+        }
+        .service-icon {
+            font-size: 2.6rem;
+            margin-bottom: 20px;
+            color: #B77CFF;
+        }
+        .service-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #E2D5FF;
+        }
+        .service-card p {
+            color: #B5A7D4;
+            line-height: 1.45;
+        }
+
+        /* подкаст блок */
+        .podcast-block {
+            background: #131020;
+            border-radius: 56px;
+            padding: 48px 40px;
+            margin: 50px 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            border: 1px solid #362A56;
+        }
+        .podcast-text {
+            flex: 2;
+        }
+        .podcast-text .mic {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #B48AFF;
+            margin-bottom: 12px;
+        }
+        .podcast-text p {
+            font-size: 1.45rem;
+            font-weight: 500;
+            line-height: 1.4;
+            color: #EEE5FF;
+        }
+        .podcast-link {
+            background: #9A6EE6;
+            padding: 14px 28px;
+            border-radius: 60px;
+            color: #0A0A0F;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+        .podcast-link:hover {
+            background: #BB92FF;
+            transform: scale(1.02);
+            color: #000;
+        }
+
+        /* контакты */
+        .contacts {
+            background: #0E0C18;
+            border-radius: 56px;
+            padding: 48px 40px;
+            margin: 40px 0 50px;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.4);
+            border: 1px solid #2F2650;
+        }
+        .contacts h2 {
+            color: #EADDFF;
+        }
+        .contacts-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            justify-content: space-between;
+            margin-top: 28px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: #16122A;
+            padding: 12px 26px;
+            border-radius: 60px;
+            border: 1px solid #3F2F6A;
+        }
+        .contact-item i {
+            font-size: 1.6rem;
+            color: #B27CFF;
+        }
+        .contact-item a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #DCCCFF;
+            font-size: 1rem;
+        }
+        .contact-item a:hover {
+            color: white;
+        }
+        /* куки блок фиолетовый */
+        .cookie-footer {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: auto;
+            max-width: 92%;
+            background: #1A142F;
+            backdrop-filter: blur(16px);
+            background: rgba(20, 15, 40, 0.96);
+            border-radius: 60px;
+            padding: 14px 28px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            z-index: 1000;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.5);
+            border: 1px solid #6A4D9E;
+        }
+        .cookie-footer p {
+            color: #E9DEFF;
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        .cookie-footer p i {
+            margin-right: 6px;
+            color: #C99EFF;
+        }
+        .cookie-btn {
+            background: #AD7AFF;
+            border: none;
+            padding: 8px 28px;
+            border-radius: 40px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.2s;
+            color: #0B0720;
+            font-family: 'Inter', sans-serif;
+        }
+        .cookie-btn:hover {
+            background: #D6B0FF;
+            transform: scale(1.02);
+        }
+        .hidden-cookie {
+            display: none !important;
+        }
+        footer {
+            padding: 40px 0 60px;
+            text-align: center;
+            color: #8B7AAE;
+            border-top: 1px solid #292144;
+            margin-top: 20px;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 780px) {
+            .container { padding: 0 20px; }
+            .hero-left h1 { font-size: 2.5rem; }
+            .section-title { font-size: 1.9rem; }
+            .podcast-text p { font-size: 1.1rem; }
+            .cookie-footer { padding: 12px 20px; flex-direction: column; width: 90%; border-radius: 32px; bottom: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="navbar reveal-item">
+        <div class="logo">
+            <h1>Noymi Sanchez</h1>
+            <p>разработка · дизайн · копирайтинг · подкаст</p>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Главная</a></li>
+            <li><a href="#services">Услуги</a></li>
+            <li><a href="#contacts">Контакты</a></li>
+            <li><a href="#podcast">Подкаст</a></li>
+        </ul>
+    </div>
+
+    <!-- hero -->
+    <div class="hero">
+        <div class="hero-left reveal-item">
+            <div class="sub">✧ CREATIVE DIRECTOR ✧</div>
+            <h1>Noymi Sanchez<br>Разработчик, дизайнер, копирайтер и подкастер.</h1>
+            <div class="hero-highlight">Создаю приложения, дизайн и сайты.<br> Дорого. Красиво. Эффективно.</div>
+            <div class="badge-group">
+                <span class="badge"><i class="fas fa-code"></i> Web & Apps</span>
+                <span class="badge"><i class="fas fa-pen-fancy"></i> Копирайтинг</span>
+                <span class="badge"><i class="fas fa-microphone-alt"></i> Подкаст</span>
+            </div>
+        </div>
+        <div class="hero-right reveal-item">
+            <i class="fas fa-rocket"></i>
+            <h3>Инвестируйте в проект</h3>
+            <p style="margin-top: 12px;">и он изменится до неузнаваемости.</p>
+            <div class="price-quote">Дорого. Красиво.🔥</div>
+        </div>
+    </div>
+
+    <!-- услуги -->
+    <div id="services">
+        <div class="section-title reveal-item">Что я делаю <span style="color:#B77CFF;">✧</span></div>
+        <div class="grid-services">
+            <div class="service-card reveal-item">
+                <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+                <h3>Приложения</h3>
+                <p>Кроссплатформенные приложения, которые решают задачи и выглядят дорого. Swift, Flutter, React Native.</p>
+            </div>
+            <div class="service-card reveal-item">
+                <div class="service-icon"><i class="fas fa-palette"></i></div>
+                <h3>Дизайн</h3>
+                <p>UI/UX, брендинг, айдентика. Сложные интерфейсы с характером. Премиум внешний вид и удобство.</p>
+            </div>
+            <div class="service-card reveal-item">
+                <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+                <h3>Сайты</h3>
+                <p>От лендингов до маркетплейсов. Адаптив, скорость, анимации. Код или конструкторы — под ключ.</p>
+            </div>
+            <div class="service-card reveal-item">
+                <div class="service-icon"><i class="fas fa-feather-alt"></i></div>
+                <h3>Копирайтинг</h3>
+                <p>Тексты, которые продают и вдохновляют. Сайты, рассылки, посадочные — точно в tone of voice.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- подкаст -->
+    <div id="podcast" class="podcast-block reveal-item">
+        <div class="podcast-text">
+            <div class="mic"><i class="fas fa-podcast"></i> ● Noymi Podcast</div>
+            <p>🎙️ «Дорого, красиво, по делу» — обсуждаю дизайн, карьеру и как не прогореть в IT. Новый эпизод каждую среду.</p>
+        </div>
+        <a href="https://t.me/NoymiDesign" target="_blank" class="podcast-link">Слушать в Telegram <i class="fab fa-telegram"></i></a>
+    </div>
+
+    <!-- контакты -->
+    <div id="contacts" class="contacts reveal-item">
+        <h2 style="font-size: 1.9rem; font-weight: 700;">Связаться →</h2>
+        <div class="contacts-grid">
+            <div class="contact-item"><i class="far fa-envelope"></i> <a href="mailto:noymi.sanchez@mail.ru">noymi.sanchez@mail.ru</a></div>
+            <div class="contact-item"><i class="fab fa-telegram"></i> <a href="https://t.me/typcm" target="_blank">ассистент @typcm</a></div>
+            <div class="contact-item"><i class="fab fa-telegram-plane"></i> <a href="https://t.me/NoymiDesign" target="_blank">Славная тележечка @NoymiDesign</a></div>
+        </div>
+        <p style="margin-top: 32px; font-size: 0.9rem; color:#A590D0;"><i class="fas fa-gem"></i> Быстро, эффективно и очень качественно. Ставка — премиум.</p>
+    </div>
+
+    <footer>
+        <p>Noymi Sanchez — разработка, дизайн, копирайтинг, подкаст. <br>Инвестируйте в своё присутствие в сети, и оно заиграет новыми красками.</p>
+    </footer>
+</div>
+
+<!-- куки блок -->
+<div id="cookieBanner" class="cookie-footer">
+    <p><i class="fas fa-cookie-bite"></i> Мы используем файлы куки, иначе бы интернет работал через жопу 🍑</p>
+    <button id="acceptCookiesBtn" class="cookie-btn">Прекрасно ✨</button>
+</div>
+
+<script>
+    // -------------------------------
+    // 1. КУКИ ЛОГИКА
+    // -------------------------------
+    (function() {
+        const cookiesAccepted = localStorage.getItem('cookiesAcceptedNoymi');
+        const banner = document.getElementById('cookieBanner');
+        if (cookiesAccepted === 'true') {
+            banner.classList.add('hidden-cookie');
+        } else {
+            banner.classList.remove('hidden-cookie');
+        }
+        const acceptBtn = document.getElementById('acceptCookiesBtn');
+        if (acceptBtn) {
+            acceptBtn.addEventListener('click', function() {
+                localStorage.setItem('cookiesAcceptedNoymi', 'true');
+                banner.classList.add('hidden-cookie');
+            });
+        }
+    })();
+
+    // -------------------------------
+    // 2. ПОСТЕПЕННОЕ ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ + ПРИ ВОЗВРАТЕ НАЗАД (скрываются снова)
+    //    Используем IntersectionObserver для "reveal-item"
+    // -------------------------------
+    const revealElements = document.querySelectorAll('.reveal-item');
+    
+    // изначально скрываем все, если они не в видимой области
+    // но лучше задать базовый класс через CSS: .reveal-item { transition... } и .reveal-hidden
+    // присвоим всем начальное состояние "скрыто", кроме тех, что уже в зоне видимости?
+    // Но чтобы при загрузке верхние элементы были видны, мы проверим вручную.
+    
+    function applyInitialState() {
+        revealElements.forEach(el => {
+            // добавляем класс hidden, чтобы они были прозрачными и смещенными
+            el.classList.add('reveal-hidden');
+        });
+    }
+    
+    function setupObserver() {
+        // Порог срабатывания 0.25 - элемент появляется, когда 25% его на экране
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // добавляем класс видимости, убираем скрытый
+                    entry.target.classList.add('reveal-visible');
+                    entry.target.classList.remove('reveal-hidden');
+                } else {
+                    // КЛЮЧЕВОЙ МОМЕНТ: когда элемент уходит из viewport, мы возвращаем скрытое состояние
+                    // чтобы при скролле вверх он снова появлялся постепенно
+                    entry.target.classList.add('reveal-hidden');
+                    entry.target.classList.remove('reveal-visible');
+                }
+            });
+        }, { threshold: 0.25, rootMargin: "0px 0px -10px 0px" }); // небольшой отступ для плавности
+        
+        revealElements.forEach(el => {
+            observer.observe(el);
+        });
+    }
+    
+    // инициализация: сперва скрыть все, потом запустить обсервер
+    applyInitialState();
+    setupObserver();
+    
+    // дополнительно, чтобы элементы, которые были видны сразу при загрузке не остались скрытыми,
+    // принудительно через микро-таймер проверим, но IntersectionObserver сам отработает при загрузке
+    // также добавим небольшую задержку для пересчета (на случай быстрых рендеров)
+    setTimeout(() => {
+        // принудительно запускаем небольшой рефреш — находим все элементы, которые попадают в зону видимости
+        const tempObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-visible');
+                    entry.target.classList.remove('reveal-hidden');
+                } else {
+                    entry.target.classList.add('reveal-hidden');
+                    entry.target.classList.remove('reveal-visible');
+                }
+            });
+        }, { threshold: 0.2 });
+        revealElements.forEach(el => tempObserver.observe(el));
+        setTimeout(() => tempObserver.disconnect(), 500);
+    }, 100);
+</script>
+
+<style>
+    /* дополнительные стили для плавности */
+    .reveal-item {
+        transition: opacity 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    .reveal-hidden {
+        opacity: 0;
+        transform: translateY(32px);
+    }
+    .reveal-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    /* для навбара и некоторых блоков, которые могут быть всегда видны, но мы оставим как есть - они тоже красиво сработают */
+    body {
+        background: #0A0A0F;
+    }
+    a, button {
+        cursor: pointer;
+    }
+</style>
+</body>
+</html>
